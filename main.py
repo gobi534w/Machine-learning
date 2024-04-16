@@ -3,13 +3,17 @@ import numpy as np
 import pandas as pd
 
 # Loading Data from a CSV File
-data = pd.DataFrame(data=pd.read_csv('trainingdata (1).csv'))
+@st.cache
+def load_data():
+    return pd.read_csv('trainingdata (1).csv')
+
+data = load_data()
 
 # Separating concept features from Target
-concepts = np.array(data.iloc[:,0:-1])
+concepts = np.array(data.iloc[:, :-1])
 
 # Isolating target into a separate DataFrame
-target = np.array(data.iloc[:,-1])
+target = np.array(data.iloc[:, -1])
 
 def learn(concepts, target):
     
@@ -56,7 +60,7 @@ def learn(concepts, target):
 # Call the function to learn
 s_final, g_final = learn(concepts, target)
 
-# Print the results using st.write()
+# Streamlit UI
 st.write("Final Specific_h:")
 st.write(s_final)
 
