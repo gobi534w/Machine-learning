@@ -54,5 +54,5 @@ def main():
     st.subheader("Predicted Values")
     st.write("Predicted values:", y_pred)
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     main()
